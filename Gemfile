@@ -16,6 +16,7 @@ gem 'turbolinks', '~> 5'
 gem "haml-rails", '~> 2.0'
 gem 'simple_form'
 gem 'bootstrap'
+gem 'rubyzip'
 
 group :development, :test do
   gem 'byebug'

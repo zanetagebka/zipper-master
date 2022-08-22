@@ -11,4 +11,4 @@
         %td= attachment.created_at.to_date
         %td= attachment.file.filename
         %td= attachment.file.byte_size
-        %td= link_to 'Pobierz', attachment.file
+        %td= link_to 'Pobierz', attachment.file, format: :zip
