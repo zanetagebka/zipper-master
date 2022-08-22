@@ -17,6 +17,8 @@ gem "haml-rails", '~> 2.0'
 gem 'simple_form'
 gem 'bootstrap'
 gem 'rubyzip'
+gem 'devise'
+gem 'cancancan'
 
 group :development, :test do
   gem 'byebug'

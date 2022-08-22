@@ -1,4 +1,6 @@
 class AttachmentsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @attachment = Attachment.new
   end
@@ -7,6 +9,7 @@ class AttachmentsController < ApplicationController
     return redirect_to new_attachment_path, notice: "File cannot be blank" if attachment_params.nil?
 
     @attachment = Attachment.new(attachment_params.to_unsafe_h)
+    @attachment.user_id = current_user.id
     service = AttachmentZipper.new(@attachment, params[:attachment][:file].tempfile)
     buffer = service.call
     buffer.rewind
@@ -18,7 +21,9 @@ class AttachmentsController < ApplicationController
   end
 
   def index
-    @attachments = Attachment.all
+    authorize! :read, Attachment
+
+    @attachments = Attachment.where(user_id: current_user.id)
   end
 
   private

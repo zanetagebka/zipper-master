@@ -6,3 +6,8 @@
       = link_to 'Lista plików', root_path, class: ['nav-link', ('active' if current_page?(root_path))]
     %li.nav-item
       = link_to 'Dodaj plik', new_attachment_path, class: ['nav-link', ('active' if current_page?(new_attachment_path))]
+    %li.nav-item
+      - if user_signed_in?
+        = link_to 'Wyloguj', destroy_user_session_path, method: :delete, class: ['nav-link']
+      - else
+        = link_to 'Zaloguj', new_user_session_path, class: ['nav-link']
