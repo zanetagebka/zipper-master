@@ -10,7 +10,7 @@ class AttachmentsController < ApplicationController
 
     @attachment = Attachment.new(attachment_params.to_unsafe_h)
     @attachment.user_id = current_user.id
-    service = AttachmentZipper.new(@attachment, params[:attachment][:file].tempfile)
+    service = AttachmentZipper.new(@attachment, attachment_params[:file].tempfile)
     buffer = service.call
     buffer.rewind
     @attachment.file.attach(io: StringIO.new(buffer.read),
@@ -33,10 +33,14 @@ class AttachmentsController < ApplicationController
   end
 
   def resolve_save(attachment, password)
-    if attachment.save
-      redirect_to root_path, notice: "Your password is: #{password}"
-    else
-      render :new
+    respond_to do |format|
+      if attachment.save
+        format.html { redirect_to root_path, notice: "Your password is: #{password}" }
+        format.json { render json: @attachment, status: :created }
+      else
+        format.html { render :new }
+        format.json { render json: @attachment.errors, status: :unprocessable_entity }
+      end
     end
   end
 end

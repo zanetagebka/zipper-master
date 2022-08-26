@@ -19,6 +19,9 @@ gem 'bootstrap'
 gem 'rubyzip'
 gem 'devise'
 gem 'cancancan'
+gem 'grape'
+gem 'grape-entity'
+gem 'grape_on_rails_routes'
 
 group :development, :test do
   gem 'byebug'
