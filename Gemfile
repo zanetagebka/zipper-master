@@ -16,6 +16,12 @@ gem 'turbolinks', '~> 5'
 gem "haml-rails", '~> 2.0'
 gem 'simple_form'
 gem 'bootstrap'
+gem 'rubyzip'
+gem 'devise'
+gem 'cancancan'
+gem 'grape'
+gem 'grape-entity'
+gem 'grape_on_rails_routes'
 
 group :development, :test do
   gem 'byebug'

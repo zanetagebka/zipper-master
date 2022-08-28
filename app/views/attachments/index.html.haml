@@ -10,5 +10,5 @@
       %tr
         %td= attachment.created_at.to_date
         %td= attachment.file.filename
-        %td= attachment.file.byte_size
-        %td= link_to 'Pobierz', attachment.file
+        %td= number_to_human_size(attachment.file.byte_size)
+        %td= link_to 'Pobierz', attachment.file, format: :zip
